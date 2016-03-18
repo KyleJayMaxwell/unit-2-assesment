@@ -12,7 +12,11 @@ module.exports = {
   },
 
   getSingleMovie: function(id) {
-    return knex('movies').where('id', id);
+    return knex('movies').where('id', id)
+    .then(function(movie){
+      // console.log(movies);
+      return movie;
+    });
   },
   addSingleMovie: function(director, title, rating, description) {
     return knex('movies').insert({
