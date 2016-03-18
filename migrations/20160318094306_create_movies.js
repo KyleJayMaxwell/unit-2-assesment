@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
 
-knex.schema.createTable('movies', function (table) {
+ return knex.schema.createTable('movies', function (table) {
   table.increments();
   table.string('director');
   table.string('title');

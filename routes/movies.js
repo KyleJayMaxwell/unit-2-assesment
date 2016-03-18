@@ -3,9 +3,12 @@ var router = express.Router();
 var pg = require('pg');
 var connectionString = ('postgres://localhost:5432/moviedb');
 var knex = require('../db/knex');
+var queries = require('../queries');
 
 router.get('/movies', function(req, res, next) {
-  res.render('movies/index');
+  queries.getAllMovies().then(function(results) {
+      res.render('movies/index', {results: results});
+  });
 });
 
 router.post('/movies', function(req, res, next){
@@ -15,6 +18,9 @@ router.post('/movies', function(req, res, next){
   var rating = req.body.rating;
   var description = req.body.description;
 
+  queries.addSingleMovie(director,title,rating,description).then(function(results){
+    res.redirect('/movies');
+  });
 
 });
 
