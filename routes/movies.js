@@ -72,4 +72,14 @@ router.get('/movie/edit/:id', function(req, res, next) {
 
 });
 
+// delete one
+router.post('/movie/delete/:id', function( req, res, next){
+  var id = req.params.id;
+
+  queries.deleteMovie(id).then(function(movies){
+    res.redirect('/movies');
+  });
+});
+
+
 module.exports = router;

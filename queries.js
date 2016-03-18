@@ -40,6 +40,11 @@ module.exports = {
             console.log(results);
             return results;
         }); 
+  },
+  deleteMovie: function(id) {
+    return knex('movies').where('id', id).del().then(function(results){
+      return results;
+    });
   }
 
 };
