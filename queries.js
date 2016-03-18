@@ -4,7 +4,11 @@ var movies = function() {return knex('movies');};
 module.exports = {
 
   getAllMovies: function() {
-    return knex.select().table('movies');
+    return knex.select().table('movies')
+    .then(function(movies){
+      console.log(movies);
+      return movies;
+    });
   },
 
   getSingleMovie: function(id) {

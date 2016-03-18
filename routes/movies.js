@@ -6,8 +6,8 @@ var knex = require('../db/knex');
 var queries = require('../queries');
 
 router.get('/movies', function(req, res, next) {
-  queries.getAllMovies().then(function(results) {
-      res.render('movies/index', {results: results});
+  queries.getAllMovies().then(function(movies) {
+      res.render('movies/index', {movies: movies});
   });
 });
 
