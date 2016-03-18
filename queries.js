@@ -28,6 +28,18 @@ module.exports = {
     .then(function(results) {
       console.log(results);
     });
+  },
+  editMovie: function(id, director, title, rating, description) {
+    return knex('movies').where('id',id).update({
+          director: director,
+          title: title,
+          rating: rating,
+          description: description
+        })
+        .then(function(results) {
+          console.log(results);
+            return results;
+        }); 
   }
 
 };

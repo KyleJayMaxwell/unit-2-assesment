@@ -35,11 +35,39 @@ router.get('/movie/new', function(req, res, next) {
 router.get('/movie/:id', function(req, res, next) {
 
   var id = req.params.id;
-  console.log(id);
+  // console.log(id);
 
   queries.getSingleMovie(id).then(function(movies){
     var movie = movies[0];
     res.render('movies/show', {movie: movie});
+  });
+
+});
+
+// update individual movies
+router.post('/movie/:id', function(req, res, next) {
+  var id = req.params.id;
+  // console.log(id);
+  var director = req.body.director;
+  var title = req.body.title;
+  var rating = req.body.rating;
+  var description = req.body.description;
+
+
+  queries.editMovie(id,director,title,rating,description).then(function(movies){
+    res.redirect('/movie/'+id);
+  });
+
+});
+
+// edit page
+router.get('/movie/edit/:id', function(req, res, next) {
+  var id = req.params.id;
+
+
+  queries.getSingleMovie(id).then(function(movies){
+    var movie = movies[0];
+    res.render('movies/edit', {movie: movie});
   });
 
 });
